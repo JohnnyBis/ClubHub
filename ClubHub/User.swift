@@ -23,7 +23,6 @@ class User{
         self.password = userPassword
         self.grade = userGrade
         
-        
     }
     
     

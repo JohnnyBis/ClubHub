@@ -29,7 +29,8 @@ class SignUpView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func checkFields(){
+    
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
         
         if nameField.text?.isEmpty ?? true {
             error.text = "Please insert your name"
@@ -48,14 +49,19 @@ class SignUpView: UIViewController {
             error.isHidden = false
             
         }else{
+            
+            print("Successful registration")
             performSegue(withIdentifier: "fromSignUpToHomeFeed", sender: self)
         }
     }
     
-    @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        
-        checkFields()
+    func creatDBUser(id: String, userData: Dictionary<String, String>){
+        DataService.ds.createFirebaseDBUsers(uid: id, userData: userData)
         
     }
+
+    
     
 }
+
+

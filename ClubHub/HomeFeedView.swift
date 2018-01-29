@@ -10,7 +10,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseAuth
 
-class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class HomeFeedView: UIViewController{
     
     @IBOutlet weak var clubPosts: UITableView!
     var postList = [Post]()
@@ -60,19 +60,19 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return postList.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//        return postList.count
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
     
     
     

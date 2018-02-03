@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D67A2898DB082E5ADAB90BC /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B15973E01C6F9394D49750 /* Pods_ClubHub.framework */; };
+		D7847B95202002F90057501F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7847B94202002F90057501F /* ProfileView.swift */; };
 		D787F2BF201C016700E9F91D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787F2BE201C016700E9F91D /* AppDelegate.swift */; };
 		D787F2C1201C016700E9F91D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787F2C0201C016700E9F91D /* ViewController.swift */; };
 		D787F2C4201C016700E9F91D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D787F2C2201C016700E9F91D /* Main.storyboard */; };
@@ -22,12 +23,17 @@
 		D788F6B7201E6211001B5D43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D788F6B6201E6211001B5D43 /* GoogleService-Info.plist */; };
 		D788F6BC201E7E0A001B5D43 /* ImageCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = D788F6BB201E7E0A001B5D43 /* ImageCaching.swift */; };
 		D788F6BE201E83E5001B5D43 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D788F6BD201E83E5001B5D43 /* PostCell.swift */; };
+		D79235562023F8D80085D367 /* addPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79235552023F8D80085D367 /* addPostView.swift */; };
+		D7F65B4C202153C4000E7F07 /* recommendedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F65B4B202153C3000E7F07 /* recommendedAlgorithm.swift */; };
+		D7F65B4E202209C1000E7F07 /* Clubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F65B4D202209C1000E7F07 /* Clubs.swift */; };
+		D7F65B50202211F6000E7F07 /* SignUpOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22B15973E01C6F9394D49750 /* Pods_ClubHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2758244FA59A0600C998D4B4 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
 		859C9C4C637BE392B6DF9036 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
+		D7847B94202002F90057501F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D787F2BB201C016700E9F91D /* ClubHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D787F2BE201C016700E9F91D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D787F2C0201C016700E9F91D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +50,10 @@
 		D788F6B6201E6211001B5D43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D788F6BB201E7E0A001B5D43 /* ImageCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaching.swift; sourceTree = "<group>"; };
 		D788F6BD201E83E5001B5D43 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		D79235552023F8D80085D367 /* addPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPostView.swift; sourceTree = "<group>"; };
+		D7F65B4B202153C3000E7F07 /* recommendedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recommendedAlgorithm.swift; sourceTree = "<group>"; };
+		D7F65B4D202209C1000E7F07 /* Clubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clubs.swift; sourceTree = "<group>"; };
+		D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOneView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D7847B93201FFB400057501F /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D788F6BD201E83E5001B5D43 /* PostCell.swift */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		D787F2B2201C016700E9F91D = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +114,7 @@
 		D787F2BD201C016700E9F91D /* ClubHub */ = {
 			isa = PBXGroup;
 			children = (
+				D7847B93201FFB400057501F /* Custom Cells */,
 				D788F6B8201E7DD6001B5D43 /* Extensions */,
 				D787F2E0201D4FEE00E9F91D /* Services */,
 				D787F2D7201D427A00E9F91D /* Model */,
@@ -108,7 +127,9 @@
 				D787F2CA201C016700E9F91D /* Info.plist */,
 				D788F6B6201E6211001B5D43 /* GoogleService-Info.plist */,
 				D787F2DC201D4B1A00E9F91D /* HomeFeedView.swift */,
-				D788F6BD201E83E5001B5D43 /* PostCell.swift */,
+				D7847B94202002F90057501F /* ProfileView.swift */,
+				D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */,
+				D79235552023F8D80085D367 /* addPostView.swift */,
 			);
 			path = ClubHub;
 			sourceTree = "<group>";
@@ -118,6 +139,7 @@
 			children = (
 				D787F2D8201D42B600E9F91D /* User.swift */,
 				D787F2DE201D4B9D00E9F91D /* Post.swift */,
+				D7F65B4D202209C1000E7F07 /* Clubs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -135,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				D788F6BB201E7E0A001B5D43 /* ImageCaching.swift */,
+				D7F65B4B202153C3000E7F07 /* recommendedAlgorithm.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,15 +311,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D787F2D9201D42B600E9F91D /* User.swift in Sources */,
+				D7F65B50202211F6000E7F07 /* SignUpOneView.swift in Sources */,
 				D787F2E4201D504000E9F91D /* DataService.swift in Sources */,
 				D788F6BC201E7E0A001B5D43 /* ImageCaching.swift in Sources */,
 				D788F6B2201E5864001B5D43 /* FireStorageImageUpload.swift in Sources */,
 				D787F2DD201D4B1A00E9F91D /* HomeFeedView.swift in Sources */,
 				D787F2C1201C016700E9F91D /* ViewController.swift in Sources */,
 				D787F2DF201D4B9D00E9F91D /* Post.swift in Sources */,
+				D7F65B4C202153C4000E7F07 /* recommendedAlgorithm.swift in Sources */,
 				D787F2D2201D3F8A00E9F91D /* SignUpView.swift in Sources */,
 				D787F2BF201C016700E9F91D /* AppDelegate.swift in Sources */,
+				D7847B95202002F90057501F /* ProfileView.swift in Sources */,
 				D788F6BE201E83E5001B5D43 /* PostCell.swift in Sources */,
+				D7F65B4E202209C1000E7F07 /* Clubs.swift in Sources */,
+				D79235562023F8D80085D367 /* addPostView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

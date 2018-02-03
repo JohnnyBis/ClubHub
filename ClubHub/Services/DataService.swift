@@ -18,7 +18,7 @@ class DataService{
     private var _REF_BASE = DB_BASE
     private var _REF_POSTS = DB_BASE.collection("Posts")
     private var _REF_USERS = DB_BASE.collection("Users")
-    private var _REF_SAVED_POSTS = DB_BASE.collection("Saved Posts")
+    private var _REF_CLUBS = DB_BASE.collection("Clubs")
     
     var REF_BASE: Firestore{
         return _REF_BASE
@@ -32,11 +32,11 @@ class DataService{
         return _REF_USERS
     }
     
-    var REF_SAVED_POSTS: CollectionReference{
-        return _REF_SAVED_POSTS
+    var REF_CLUBS: CollectionReference{
+        return _REF_CLUBS
     }
     
-    func createFirebaseDBUsers(uid: String, userData: Dictionary<String, String>){
+    func createFirebaseDBUsers(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.document(uid).setData(userData) { (error) in
             if error != nil{
                 print(error!)
@@ -55,6 +55,18 @@ class DataService{
                 print("Successfully registered post to Firestore database")
             }
         }
+        
+    }
+    
+    func createFirebaseDBClubs(clubData: Dictionary<String, Any>){
+        REF_CLUBS.addDocument(data: clubData) { (error) in
+            if error != nil{
+                print(error!)
+            }else{
+                print("Successfully registered club to Firestore database.")
+            }
+        }
+        
         
     }
 

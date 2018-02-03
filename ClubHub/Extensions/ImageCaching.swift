@@ -10,37 +10,29 @@ import UIKit
 
 let imageCache = NSCache<NSString, AnyObject>()
 
+var imageURLString: String?
+
 extension UIImageView {
     
-    func loadImageUsingCacheWithUrlString(_ urlString: String) {
-        
-        self.image = nil
-        
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) as? UIImage {
+    
+    func downloadImageFrom(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        downloadImageFrom(url: url)
+    }
+    
+    func downloadImageFrom(url: URL){
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) as? UIImage {
             self.image = cachedImage
-            return
-        }
-        
-        let url = URL(string: urlString)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            
-            if let error = error {
-                print(error)
-                return
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-                if let downloadedImage = UIImage(data: data!) {
-                    imageCache.setObject(downloadedImage, forKey: urlString as NSString)
-                    
-                    self.image = downloadedImage
-                }else{
-                    print("problem")
+        } else {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async {
+                    let imageToCache = UIImage(data: data)
+                    imageCache.setObject(imageToCache!, forKey: url.absoluteString as NSString)
+                    self.image = imageToCache
                 }
-            })
-            
-        }).resume()
+                }.resume()
+        }
     }
     
 }

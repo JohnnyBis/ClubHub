@@ -10,10 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 
-class ProfileView: UIViewController{
+class ProfileView: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    
-    var list = [Post]()
+    var list = [Clubs]()
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
@@ -28,6 +27,9 @@ class ProfileView: UIViewController{
             return
         }
         
+        clubList.delegate = self
+        clubList.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
 
@@ -35,6 +37,23 @@ class ProfileView: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = clubList.dequeueReusableCell(withIdentifier: "clubCell", for: indexPath) as! ClubListCell
+        let club = list[indexPath.row]
+        cell.clubName.text = club.clubName
+        
+        let imageUrl = club.imageUrl
+        cell.clubProfileImage.downloadImageFrom(urlString: imageUrl!)
+        
+        
+        return cell
+    }
+    
     
     func fetchUser(userID: String){
         User.fetchUserData(userID, completionBlock: { (userName, userEmail, userGrade, imageUrl, club, error) in
@@ -44,7 +63,7 @@ class ProfileView: UIViewController{
             }else{
                 
                 self.profileName.text = userName
-                self.userGrade.text = "Grade: \(userGrade)"
+                self.userGrade.text = "Grade: \(userGrade!)"
                 self.profileName.sizeToFit()
                 self.userGrade.sizeToFit()
                 
@@ -74,31 +93,11 @@ class ProfileView: UIViewController{
             if error != nil{
                 print(error!)
             }else{
-                for club in clubs!{
-                    print(club)
-//                    list.append(club)
-//                    print(self.list)
-                    
-                    
-                }
+                
                 
             }
         }
     }
-    
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//
-//
-    
-    
     
     
     

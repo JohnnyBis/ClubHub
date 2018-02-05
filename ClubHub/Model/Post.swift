@@ -17,15 +17,16 @@ struct Post {
     var postTitle: String?
     var documentID: String?
     var likes: Int?
+    var timestamp: String?
     
     
-    init(postBody: String?, title: String?, url: String?, likes: Int?, documentID: String?, userName: String?) {
+    init(postBody: String?, url: String?, likes: Int?, documentID: String?, userName: String?, timestamp: String?) {
         self.imageUrl = url
         self.userName = userName
         self.postBody = postBody
-        self.postTitle = title
         self.likes = likes
         self.documentID = documentID
+        self.timestamp = timestamp
 
     }
     
@@ -33,6 +34,17 @@ struct Post {
         self.imageUrl = url?.absoluteString
     }
     
+    init(likes: Int?){
+        self.likes = likes        
+    }
+    
+    
+//    static func createLikesDictionary(likes: Int, completionBlock: @escaping (_ userLikes: Dictionary<String, Int>) -> Void){
+//        let userLikes = ["Likes": likes]
+//        completionBlock(userLikes)
+//
+//    }
+//
     static func fetchData(_ postList: [Post], completionBlock: @escaping (_ post: Post?, _ error: String?) -> Void){
         if Auth.auth().currentUser != nil{
             DataService.ds.REF_POSTS.addSnapshotListener { (querySnapshot, error) in
@@ -44,12 +56,17 @@ struct Post {
                     if diff.type == .added || diff.type == .modified || diff.type == .removed{
                         let documentID = diff.document.documentID
                         let postBody = diff.document.data()["Body"] as? String
-                        let title = diff.document.data()["Title"] as? String
                         let likes = diff.document.data()["Likes"] as? Int
                         let userName = diff.document.data()["User Name"] as? String
                         let url = diff.document.data()["Url"] as? String
-                        let post = Post(postBody: postBody, title: title, url: url, likes: likes, documentID: documentID, userName: userName)
-                        completionBlock(post, nil)
+                        if let time = diff.document.data()["Last update"] as? NSDate{
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .short
+                            let formatTimestamp = formatter.string(from: time as Date)
+                            let post = Post(postBody: postBody, url: url, likes: likes, documentID: documentID, userName: userName, timestamp: formatTimestamp)
+                            completionBlock(post, nil)
+                        }
     
                     }
                 })

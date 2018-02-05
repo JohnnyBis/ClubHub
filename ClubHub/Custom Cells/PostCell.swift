@@ -16,9 +16,16 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var readMoreButton: UIButton!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likes: UILabel!
+    @IBOutlet weak var timestamp: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        profileImage.layer.masksToBounds = false
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.clipsToBounds = true
+        timestamp.sizeToFit()
+        
         // Initialization code
     }
 

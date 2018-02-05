@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate{
     
@@ -17,6 +19,7 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var addPictureButton: UIButton!
+    @IBOutlet weak var postButton: UIButton!
     
 
     override func viewDidLoad() {
@@ -25,6 +28,7 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         postBody.delegate = self
+        postButton.isHidden = true
 
         // Do any additional setup after loading the view.
     }
@@ -46,7 +50,10 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
             FireStorageImageUpload().uploadImage(pickedImage, progressBlock: { (percentage) in
                 let percentage = percentage
                 self.progressBar.setProgress(Float(percentage), animated: true)
-
+                if percentage == 100.0 {
+                    self.postButton.isHidden = false
+                    
+                }
                 print(percentage)
             }, completionBlock: { (url, error) in
                 if error != nil{
@@ -65,7 +72,11 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
         
+        let timestamp = FieldValue.serverTimestamp()
+        self.userDict["Last update"] = timestamp
+
         addPostToFirebaseDB(userData: userDict)
+        
     }
 
     
@@ -77,6 +88,8 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     func textViewDidEndEditing(_ textView: UITextView) {
         self.userDict["Body"] = postBody.text
         print(userDict["Body"]!)
+        let uid = Auth.auth().currentUser?.uid
+        self.userDict["User Name"] = uid
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

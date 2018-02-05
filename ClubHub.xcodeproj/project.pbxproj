@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5D67A2898DB082E5ADAB90BC /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B15973E01C6F9394D49750 /* Pods_ClubHub.framework */; };
+		982ADFCF2027AE2B003FBE14 /* addClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982ADFCE2027AE2B003FBE14 /* addClubView.swift */; };
+		9878930E2026A44B005F1CE8 /* ClubListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878930D2026A44B005F1CE8 /* ClubListCell.swift */; };
 		D7847B95202002F90057501F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7847B94202002F90057501F /* ProfileView.swift */; };
 		D787F2BF201C016700E9F91D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787F2BE201C016700E9F91D /* AppDelegate.swift */; };
 		D787F2C1201C016700E9F91D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787F2C0201C016700E9F91D /* ViewController.swift */; };
@@ -33,6 +35,8 @@
 		22B15973E01C6F9394D49750 /* Pods_ClubHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2758244FA59A0600C998D4B4 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
 		859C9C4C637BE392B6DF9036 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
+		982ADFCE2027AE2B003FBE14 /* addClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addClubView.swift; sourceTree = "<group>"; };
+		9878930D2026A44B005F1CE8 /* ClubListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListCell.swift; sourceTree = "<group>"; };
 		D7847B94202002F90057501F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D787F2BB201C016700E9F91D /* ClubHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D787F2BE201C016700E9F91D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				D7847B94202002F90057501F /* ProfileView.swift */,
 				D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */,
 				D79235552023F8D80085D367 /* addPostView.swift */,
+				9878930D2026A44B005F1CE8 /* ClubListCell.swift */,
+				982ADFCE2027AE2B003FBE14 /* addClubView.swift */,
 			);
 			path = ClubHub;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 				D7F65B50202211F6000E7F07 /* SignUpOneView.swift in Sources */,
 				D787F2E4201D504000E9F91D /* DataService.swift in Sources */,
 				D788F6BC201E7E0A001B5D43 /* ImageCaching.swift in Sources */,
+				982ADFCF2027AE2B003FBE14 /* addClubView.swift in Sources */,
 				D788F6B2201E5864001B5D43 /* FireStorageImageUpload.swift in Sources */,
 				D787F2DD201D4B1A00E9F91D /* HomeFeedView.swift in Sources */,
 				D787F2C1201C016700E9F91D /* ViewController.swift in Sources */,
@@ -325,6 +332,7 @@
 				D788F6BE201E83E5001B5D43 /* PostCell.swift in Sources */,
 				D7F65B4E202209C1000E7F07 /* Clubs.swift in Sources */,
 				D79235562023F8D80085D367 /* addPostView.swift in Sources */,
+				9878930E2026A44B005F1CE8 /* ClubListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,7 @@ class DataService{
         return _REF_CLUBS
     }
     
+    
     func createFirebaseDBUsers(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.document(uid).setData(userData) { (error) in
             if error != nil{
@@ -69,6 +70,17 @@ class DataService{
         
         
     }
+    
+    func addDataFirebaseDBPosts(userData: Dictionary<String, Any>, documentName: String){
+        REF_POSTS.document(documentName).updateData(userData) { (error) in
+            if error != nil{
+                print(error!)
+            }else{
+                print("Successfully updated post to Firestore database.")
+            }
+        }
+    }
+    
 
     
     

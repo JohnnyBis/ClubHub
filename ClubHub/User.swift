@@ -64,6 +64,18 @@ struct User{
         
     }
     
+    static func addClub(userID: String?, clubName: String?){
+        
+        DataService.ds.REF_USERS.document(userID!).updateData(["Subscriptions": clubName!]) { (error) in
+            if error != nil{
+                print(error!)
+            }else{
+                print("Successfully added club to user's")
+            }
+        }
+        
+    }
+    
     
     
     

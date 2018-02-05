@@ -27,11 +27,13 @@ extension UIImageView {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async {
-                    let imageToCache = UIImage(data: data)
-                    imageCache.setObject(imageToCache!, forKey: url.absoluteString as NSString)
-                    self.image = imageToCache
+                    if let imageToCache = UIImage(data: data){
+                        imageCache.setObject(imageToCache, forKey: url.absoluteString as NSString)
+                        self.image = imageToCache
+                        
+                    }
                 }
-                }.resume()
+            }.resume()
         }
     }
     

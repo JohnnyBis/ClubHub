@@ -21,6 +21,8 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
         posts.delegate = self
         posts.dataSource = self
         fetchPost()
+        self.posts.separatorStyle = .none
+
 
         // Do any additional setup after loading the view.
     }
@@ -41,8 +43,20 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = posts.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostCell
         let post = postList[indexPath.row]
+        cell.isUserInteractionEnabled = false
         cell.postBody.text = post.postBody
         cell.likes.text = "\(post.likes)"
+        cell.timestamp.text = post.timestamp
+        if let userID = post.userName {
+            User.fetchUserData(userID, completionBlock: { (userName, userEmail, userGrade, imageUrl, club, error) in
+                cell.profileName.text = userName
+                if let imageUrl = imageUrl {
+                    cell.profileImage.downloadImageFrom(urlString: imageUrl)
+
+                }
+                
+            })
+        }
         
         if let imageUrl = post.imageUrl{
             cell.postImage.downloadImageFrom(urlString: imageUrl)
@@ -53,7 +67,7 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 348
+        return 390
     }
     
     func fetchPost(){
@@ -69,7 +83,14 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     
     }
-    
+
+//    @IBAction func likeButtonPressed(_ sender: UIButton) {
+//        let likes = Post.init(likes: 1)
+//        Post.createLikesDictionary(likes: likes) { (userLikes) in 
+//            DataService.ds.addDataFirebaseDBPosts(userData: userLikes, documentName: <#T##String#>)
+//        }
+//        
+//    }
     
     
     

@@ -108,7 +108,7 @@ class SignUpView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     print(error!)
                 }else{
                     self.userDict["Url"] = url?.absoluteString
-                    
+                    print(url?.absoluteString)
                 }
             })
             
@@ -136,8 +136,8 @@ class SignUpView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         if club == true{
             userDict.updateValue(true, forKey: "Club")
-            let club = Clubs(title: nameField.text!, categories: ["First", "Second", "Third"])
-            let clubData = ["Club name": club.title, "Categories": club.categories] as [String : Any]
+            let club = Clubs(clubName: nameField.text!, categories: ["First", "Second", "Third"], imageUrl: nil)
+            let clubData = ["Club name": club.clubName, "Categories": club.categories!] as [String : Any]
             print(clubData)
             DataService.ds.createFirebaseDBClubs(clubData: clubData)
             

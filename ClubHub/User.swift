@@ -56,7 +56,7 @@ struct User{
             if error != nil{
                 completionBlock(nil, error! as? String)
             }else{
-                let clubs = doc?.data()["Subscriptions"] as? Array<String>
+                let clubs = doc?.data()["Clubs"] as? Array<String>
                 completionBlock(clubs, nil)
                 
             }
@@ -65,14 +65,23 @@ struct User{
     }
     
     static func addClub(userID: String?, clubName: String?){
-        
-        DataService.ds.REF_USERS.document(userID!).updateData(["Subscriptions": clubName!]) { (error) in
+        User.fetchUserClubs(userID) { (clucbs, error) in
             if error != nil{
                 print(error!)
             }else{
-                print("Successfully added club to user's")
+                var cub = clucbs
+                cub?.append(clubName!)
+                DataService.ds.REF_USERS.document(userID!).updateData(["Clubs": cub!]) { (error) in
+                    if error != nil{
+                        print(error!)
+                    }else{
+                        print("Successfully added club to user's")
+                    }
+                }
+                
             }
         }
+        
         
     }
     

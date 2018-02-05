@@ -22,7 +22,7 @@ struct Clubs {
         self.imageUrl = imageUrl
     }
     
-    static func fetchClubList(_ clubList: [Clubs], completionBlock: @escaping (_ post: Clubs?, _ error: String?) -> Void){
+    static func fetchClubList( completionBlock: @escaping (_ post: Clubs?, _ error: String?) -> Void){
         if Auth.auth().currentUser != nil{
             DataService.ds.REF_CLUBS.addSnapshotListener { (querySnapshot, error) in
                 guard let postChanges = querySnapshot else{

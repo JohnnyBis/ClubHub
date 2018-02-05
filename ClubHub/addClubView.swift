@@ -19,11 +19,15 @@ class addClubView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchClubs(clubs: clubList)
+        fetchClubs() {
+            DispatchQueue.main.async {
+                self.pickerView.reloadAllComponents()
+            }
+        }
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         selectedClub.sizeToFit()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -51,12 +55,13 @@ class addClubView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         
     }
     
-    func fetchClubs(clubs: [Clubs]){
-        Clubs.fetchClubList(clubs) { (clubs, error) in
+    func fetchClubs(completion: @escaping ()->()){
+        Clubs.fetchClubList() { (clubs, error) in
             if error != nil{
                 print(error!)
             }else{
                 self.clubList.append(clubs!)
+                completion()
                 print(self.clubList)
             }
         }
@@ -67,6 +72,7 @@ class addClubView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
         User.addClub(userID: userID, clubName: chosenClub)
         
     }
+    
     
 
 

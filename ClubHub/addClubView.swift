@@ -8,9 +8,12 @@
 
 import UIKit
 import FirebaseAuth
+//protocol addClubViewDelegate{
+//    func didFinishAddClub()
+//}
 
 class addClubView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-    
+//    var delegate:addClubViewDelegate?
     var clubList = [Clubs]()
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -70,8 +73,10 @@ class addClubView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
     @IBAction func addClubButtonPressed(_ sender: UIButton) {
         let userID = Auth.auth().currentUser?.uid
         User.addClub(userID: userID, clubName: chosenClub)
-        
+//        self.delegate?.didFinishAddClub()
+        performSegue(withIdentifier: "unwindSegueToProfile", sender: self)
     }
+    
     
     
 

@@ -20,8 +20,7 @@ class FireStorageImageUpload: NSObject{
         let imagePostFolder = "itemImages"
         
         //Path to upload image
-        let imageName = "\(Date().timeIntervalSinceNow).jpg"
-        let imageReference = storageReference.child(imagePostFolder).child(imageName)
+        let imageReference = storageReference.child(imagePostFolder)
         
         if Auth.auth().currentUser != nil{
             //Convert UIImage to JPEG

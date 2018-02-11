@@ -108,7 +108,6 @@ class SignUpView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     print(error!)
                 }else{
                     self.userDict["Url"] = url?.absoluteString
-                    print(url?.absoluteString)
                 }
             })
             

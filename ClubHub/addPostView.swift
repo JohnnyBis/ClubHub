@@ -13,6 +13,7 @@ import Firebase
 class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate{
     
     var userDict: [String:Any] = [:]
+    let uid = Auth.auth().currentUser?.uid
     
     let imagePicker = UIImagePickerController()
     @IBOutlet weak var postBody: UITextView!
@@ -28,7 +29,7 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         postBody.delegate = self
-        postButton.isHidden = true
+        addUserName()
 
         // Do any additional setup after loading the view.
     }
@@ -50,10 +51,13 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
             FireStorageImageUpload().uploadImage(pickedImage, progressBlock: { (percentage) in
                 let percentage = percentage
                 self.progressBar.setProgress(Float(percentage), animated: true)
-                if percentage == 100.0 {
-                    self.postButton.isHidden = false
+                if percentage < 100.0 {
+                    self.postButton.isHidden = true
                     
+                }else{
+                    self.postButton.isHidden = false
                 }
+                
                 print(percentage)
             }, completionBlock: { (url, error) in
                 if error != nil{
@@ -71,10 +75,10 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        
         let timestamp = FieldValue.serverTimestamp()
         self.userDict["Last update"] = timestamp
-
+        self.userDict["Body"] = postBody.text
+        print(userDict)
         addPostToFirebaseDB(userData: userDict)
         
     }
@@ -82,14 +86,7 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     @IBAction func addPictureButtonPressed(_ sender: UIButton) {
         present(imagePicker, animated: true, completion: nil)
-    }
-    
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        self.userDict["Body"] = postBody.text
-        print(userDict["Body"]!)
-        let uid = Auth.auth().currentUser?.uid
-        self.userDict["User Name"] = uid
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -98,6 +95,16 @@ class addPostView: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     func addPostToFirebaseDB(userData: Dictionary<String, Any>){
         DataService.ds.createFirebaseDBPosts(userData: userData)
+    }
+    
+    func addUserName(){
+        User.fetchUserPostData(uid!) { (user, error) in
+            if error != nil{
+                print(error!)
+            }else{
+                self.userDict["User Name"] = user?.name
+            }
+        }
     }
  
 }

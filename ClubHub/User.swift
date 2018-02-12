@@ -119,6 +119,29 @@ struct User{
         
     }
     
+    static func removeClub(userID: String?, clubName: String?){
+        let message = "Successfully removed club to user's"
+        
+        User.fetchUserClubs(userID) { (clubs, error) in
+            if error != nil{
+                print(error!)
+            }else{
+                var cub = clubs
+                if let index = cub?.index(of: clubName!) {
+                    cub?.remove(at: index)
+                    DataService.ds.REF_USERS.document(userID!).updateData(["Clubs": cub!]) { (error) in
+                        if error != nil{
+                            print(error!)
+                        }else{
+                            print(message)
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
     
     
     

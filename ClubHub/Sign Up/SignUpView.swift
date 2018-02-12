@@ -136,9 +136,10 @@ class SignUpView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         if club == true{
             userDict.updateValue(true, forKey: "Club")
             let club = Clubs(clubName: nameField.text!, categories: ["First", "Second", "Third"], imageUrl: nil)
-            let clubData = ["Club name": club.clubName, "Categories": club.categories!] as [String : Any]
+            let clubData = ["Club name": club.clubName!, "Categories": club.categories!] as [String : Any]
             print(clubData)
             DataService.ds.createFirebaseDBClubs(clubData: clubData)
+            
             
         }else{
             userDict.updateValue(false, forKey: "Club")

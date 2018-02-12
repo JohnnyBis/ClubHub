@@ -114,7 +114,4 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
     //    }
 
     
-    
-    
-    
 }

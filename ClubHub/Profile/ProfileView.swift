@@ -16,6 +16,7 @@ class ProfileView: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
     var userProfile = [User]()
     var userClubs = [String]()
+    var clubProfileImage = [String]()
 
     let uid = Auth.auth().currentUser?.uid
     
@@ -77,28 +78,32 @@ class ProfileView: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let cell = clubList.dequeueReusableCell(withIdentifier: "clubCell", for: indexPath) as! ClubListCell
 //        let user = userProfile[indexPath.row]
         let listClubs = userClubs[indexPath.row]
-        
+        Clubs.searchClub(listClubs, completionBlock: { (club, error) in
+            let image = club?.imageUrl
+            print(image!)
+            cell.clubProfileImage.downloadImageFrom(urlString: image!)
+
+        })
         cell.clubName.text = listClubs
         cell.clubName.sizeToFit()
-        
         return cell
         
     }
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//
-//        if editingStyle == .delete{
-//            list.remove(at: indexPath.row)
-//            clubList.beginUpdates()
-//            clubList.deleteRows(at: [indexPath], with: .fade)
-//
-//
-//        }
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete{
+            User.removeClub(userID: uid, clubName: userClubs[indexPath.row])
+            userClubs.remove(at: indexPath.row)
+            clubList.deleteRows(at: [indexPath], with: .automatic)
+
+
+        }
+    }
     
     
 
@@ -192,7 +197,6 @@ class ProfileView: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 for club in clubs{
                     self.userClubs.append(club)
                 }
-                
             }
             DispatchQueue.main.async {
                 self.clubList.reloadData()
@@ -203,6 +207,7 @@ class ProfileView: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         showUserProfile(userID: uid!)

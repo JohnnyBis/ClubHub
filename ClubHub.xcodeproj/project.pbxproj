@@ -89,10 +89,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D700B347203153CE00BB4B2E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				982ADFCE2027AE2B003FBE14 /* addClubView.swift */,
+				D7847B94202002F90057501F /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D700B3482031546600BB4B2E /* News Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D787F2DC201D4B1A00E9F91D /* HomeFeedView.swift */,
+				D79235552023F8D80085D367 /* addPostView.swift */,
+			);
+			path = "News Feed";
+			sourceTree = "<group>";
+		};
+		D76285B120314E8100A494EA /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				D787F2D1201D3F8A00E9F91D /* SignUpView.swift */,
+				D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
 		D7847B93201FFB400057501F /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D788F6BD201E83E5001B5D43 /* PostCell.swift */,
+				9878930D2026A44B005F1CE8 /* ClubListCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -122,20 +150,17 @@
 				D788F6B8201E7DD6001B5D43 /* Extensions */,
 				D787F2E0201D4FEE00E9F91D /* Services */,
 				D787F2D7201D427A00E9F91D /* Model */,
-				D787F2BE201C016700E9F91D /* AppDelegate.swift */,
+				D76285B120314E8100A494EA /* Sign Up */,
+				D700B3482031546600BB4B2E /* News Feed */,
+				D700B347203153CE00BB4B2E /* Profile */,
 				D787F2C0201C016700E9F91D /* ViewController.swift */,
-				D787F2D1201D3F8A00E9F91D /* SignUpView.swift */,
+				D787F2BE201C016700E9F91D /* AppDelegate.swift */,
 				D787F2C2201C016700E9F91D /* Main.storyboard */,
 				D787F2C5201C016700E9F91D /* Assets.xcassets */,
 				D787F2C7201C016700E9F91D /* LaunchScreen.storyboard */,
 				D787F2CA201C016700E9F91D /* Info.plist */,
 				D788F6B6201E6211001B5D43 /* GoogleService-Info.plist */,
-				D787F2DC201D4B1A00E9F91D /* HomeFeedView.swift */,
-				D7847B94202002F90057501F /* ProfileView.swift */,
-				D7F65B4F202211F6000E7F07 /* SignUpOneView.swift */,
-				D79235552023F8D80085D367 /* addPostView.swift */,
-				9878930D2026A44B005F1CE8 /* ClubListCell.swift */,
-				982ADFCE2027AE2B003FBE14 /* addClubView.swift */,
+				D7F65B4B202153C3000E7F07 /* recommendedAlgorithm.swift */,
 			);
 			path = ClubHub;
 			sourceTree = "<group>";
@@ -163,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				D788F6BB201E7E0A001B5D43 /* ImageCaching.swift */,
-				D7F65B4B202153C3000E7F07 /* recommendedAlgorithm.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

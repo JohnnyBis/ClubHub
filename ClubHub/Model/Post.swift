@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-struct Post {
+class Post {
     var imageUrl: String?
     var userName: String?
     var postBody: String?
@@ -76,8 +76,28 @@ struct Post {
                     print(error!)
                 }else{
                     for club in clubs!{
-                        
-                        
+                        DataService.ds.REF_POSTS.whereField("User Name", isEqualTo: club).addSnapshotListener({ (querySnapshot, error) in
+                            if error != nil{
+                                print(error!)
+                            }else{
+                                querySnapshot?.documentChanges.forEach({ (diff) in
+                                    if diff.type == .added || diff.type == .modified || diff.type == .removed{
+                                        let documentID = diff.document.documentID
+                                        let postBody = diff.document.data()["Body"] as? String
+                                        let userName = diff.document.data()["User Name"] as? String
+                                        let url = diff.document.data()["Url"] as? String
+                                        if let time = diff.document.data()["Last update"] as? NSDate{
+                                            let formatter = DateFormatter()
+                                            formatter.dateStyle = .medium
+                                            formatter.timeStyle = .short
+                                            let formatTimestamp = formatter.string(from: time as Date)
+                                            let post = Post(postBody: postBody, url: url, likes: nil, documentID: documentID, userName: userName, timestamp: formatTimestamp)
+                                            completionBlock(post, nil)
+                                        }
+                                    }
+                                })
+                            }
+                        })
                     }
                 }
             })
@@ -87,30 +107,8 @@ struct Post {
         }
     }
     
-    func queryPostFromClub(club: String){
-        DataService.ds.REF_POSTS.whereField("User Name", isEqualTo: club).addSnapshotListener({ (querySnapshot, error) in
-            if error != nil{
-                print(error!)
-            }else{
-                querySnapshot?.documentChanges.forEach({ (diff) in
-                    if diff.type == .added || diff.type == .modified || diff.type == .removed{
-                        let documentID = diff.document.documentID
-                        let postBody = diff.document.data()["Body"] as? String
-                        let userName = diff.document.data()["User Name"] as? String
-                        let url = diff.document.data()["Url"] as? String
-                        if let time = diff.document.data()["Last update"] as? NSDate{
-                            let formatter = DateFormatter()
-                            formatter.dateStyle = .medium
-                            formatter.timeStyle = .short
-                            let formatTimestamp = formatter.string(from: time as Date)
-                            let post = Post(postBody: postBody, url: url, likes: nil, documentID: documentID, userName: userName, timestamp: formatTimestamp)
-                            completionBlock(post, nil)
-                        }
-                        
-                    }
-                })
-            }
-        })
-    }
+//    func queryPostFromClub(club: String, completionBlock){
+//
+//    }
     
 }

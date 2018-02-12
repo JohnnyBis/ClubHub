@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-struct User{
+class User{
     
     var name: String?
     var email: String?
@@ -35,7 +35,6 @@ struct User{
         self.profileUrl = imageUrl
     }
     
-    
 //    init(url: URL?){
 //        self.profileUrl = url
 //    }
@@ -58,8 +57,6 @@ struct User{
     
                 }
             }
-      
-        
     }
     
     static func fetchUserPostData(_ userID: String, completionBlock: @escaping (_ user: User?, _ error: String?) -> Void){
@@ -99,7 +96,6 @@ struct User{
 
     static func addClub(userID: String?, clubName: String?){
         let message = "Successfully added club to user's"
-        
         User.fetchUserClubs(userID) { (clubs, error) in
             if error != nil{
                 print(error!)

@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-struct Clubs {
+class Clubs {
     
     let clubName: String?
     let categories: [String]?

@@ -43,8 +43,7 @@ class HomeFeedView: UIViewController, UITableViewDelegate, UITableViewDataSource
         let post = postList[indexPath.row]
         cell.isUserInteractionEnabled = false
         cell.postBody.text = post.postBody
-        cell.likes.text = "\(post.likes)"
-        cell.timestamp.text = post.timestamp
+        cell.timestamp.text = post.timestamp!
         
 //        if let userID = post.userName {
 //            User.fetchUserData(userID, completionBlock: { (userName, userEmail, userGrade, imageUrl, club, error) in
